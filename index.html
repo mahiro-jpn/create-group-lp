@@ -7,503 +7,229 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Sans+JP:wght@100;300;400&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0a0a0a;
-    --bg2:#141414;
-    --fg:#f5f5f5;
-    --gray:#8a8a8a;
-    --line:#2c2c2c;
-    --gold:#c4974a;
-    --gold-soft:rgba(196,151,74,.35);
-    --serif:'EB Garamond',Georgia,'Times New Roman',serif;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--fg);
-    font-family:'Noto Sans JP','Helvetica Neue',Helvetica,Arial,sans-serif;
-    font-weight:300;
-    line-height:1.9;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  img,video{display:block;max-width:100%;}
-  a{color:inherit;text-decoration:none;}
-
-  /* ===== 共通タイポ ===== */
-  .logotype{
-    font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-    font-weight:400;
-    letter-spacing:.55em;
-    text-indent:.55em;
-    text-transform:uppercase;
-    text-align:center;
-  }
-  .sec-label{
-    font-family:var(--serif);
-    font-style:italic;
-    font-weight:400;
-    font-size:1.4rem;
-    letter-spacing:.1em;
-    color:var(--gray);
-    text-align:center;
-    margin-bottom:1rem;
-  }
-  .sec-title{
-    font-size:1.5rem;
-    font-weight:300;
-    letter-spacing:.25em;
-    text-align:center;
-    margin-bottom:2.5rem;
-  }
-  .sec-title::after{
-    content:"";
-    display:block;
-    width:36px;height:1px;
-    background:var(--gold);
-    margin:1.4rem auto 0;
-  }
-  section{padding:5.5rem 1.25rem;}
-  .inner{max-width:960px;margin:0 auto;}
-
-  /* ===== エンブレム（二重円）===== */
-  .emblem{
-    width:56px;height:56px;
-    border:1px solid var(--gold);
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    margin:0 auto;
-  }
-  .emblem::after{
-    content:"";
-    width:38px;height:38px;
-    border:1px solid rgba(245,245,245,.75);
-    border-radius:50%;
-  }
-  .emblem.small{width:36px;height:36px;}
-  .emblem.small::after{width:24px;height:24px;}
-
-  /* ===== 1. HERO ===== */
-  .hero{
-    position:relative;
-    height:100svh;
-    min-height:560px;
-    padding:0;
-    display:flex;align-items:center;justify-content:center;
-    overflow:hidden;
-  }
-  .hero video{
-    position:absolute;inset:0;
-    width:100%;height:100%;
-    object-fit:cover;
-    filter:grayscale(30%) brightness(.75);
-  }
-  .hero .overlay{
-    position:absolute;inset:0;
-    background:linear-gradient(to bottom,rgba(10,10,10,.35) 0%,rgba(10,10,10,.15) 45%,rgba(10,10,10,.85) 100%);
-  }
-  .hero-content{
-    position:relative;z-index:2;
-    text-align:center;
-    padding:0 1rem;
-  }
-  .hero-content .emblem{margin-bottom:2rem;opacity:.9;}
-  .hero-content h1{
-    font-size:clamp(1.4rem,6vw,3rem);
-    margin-bottom:1.4rem;
-  }
-  .hero-copy{
-    font-size:clamp(1.05rem,4.5vw,1.6rem);
-    font-weight:400;
-    letter-spacing:.35em;
-    text-indent:.35em;
-  }
-  .hero-copy-en{
-    margin-top:1.1rem;
-    font-family:var(--serif);
-    font-style:italic;
-    font-weight:400;
-    font-size:clamp(.95rem,3.6vw,1.5rem);
-    letter-spacing:.12em;
-    color:#e3e3e3;
-  }
-  .scroll-cue{
-    position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
-    z-index:2;
-    font-size:.6rem;letter-spacing:.4em;color:var(--gray);
-    text-align:center;
-  }
-  .scroll-cue .arrow{
-    width:1px;height:44px;
-    background:linear-gradient(to bottom,transparent,var(--fg));
-    margin:0 auto .6rem;
-    animation:drop 2s ease-in-out infinite;
-  }
-  @keyframes drop{
-    0%{transform:scaleY(0);transform-origin:top;}
-    50%{transform:scaleY(1);transform-origin:top;}
-    51%{transform-origin:bottom;}
-    100%{transform:scaleY(0);transform-origin:bottom;}
-  }
-
-  /* ===== 2. STATEMENT ===== */
-  .statement{background:var(--bg);}
-  .statement .sec-title{
-    font-size:clamp(1.45rem,5.5vw,2.3rem);
-    letter-spacing:.18em;
-    line-height:1.9;
-  }
-  .statement .lead{
-    text-align:center;
-    font-size:clamp(1rem,4vw,1.35rem);
-    letter-spacing:.18em;
-    line-height:2.5;
-    margin-bottom:2.2rem;
-  }
-  .statement-note{
-    text-align:center;
-    font-size:.8rem;
-    letter-spacing:.25em;
-    color:var(--gray);
-    margin-bottom:3.5rem;
-  }
-  .statement-tagline{
-    text-align:center;
-    font-size:clamp(1rem,4.2vw,1.4rem);
-    letter-spacing:.4em;
-    text-indent:.4em;
-    font-weight:300;
-  }
-  .gold-rule{
-    width:1px;height:44px;
-    background:linear-gradient(to bottom,transparent,var(--gold));
-    margin:0 auto 2.2rem;
-  }
-
-  /* ===== キネティックタイポ ===== */
-  .kinetic span{
-    display:inline-block;
-    opacity:0;
-    transform:translateY(.55em);
-    will-change:transform,opacity;
-  }
-  @media (prefers-reduced-motion:reduce){
-    .kinetic span{opacity:1 !important;transform:none !important;}
-    .reveal{opacity:1;transform:none;}
-  }
-
-  /* ===== 3. GALLERY ===== */
-  .gallery{padding:5.5rem 0;background:var(--bg2);}
-  .slider{
-    display:flex;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-    gap:2px;
-  }
-  .slider::-webkit-scrollbar{height:3px;}
-  .slider::-webkit-scrollbar-thumb{background:var(--line);}
-  .slide{
-    flex:0 0 92%;
-    scroll-snap-align:center;
-  }
-  .slide img{width:100%;height:auto;filter:grayscale(15%);}
-  .slide figcaption{
-    font-family:var(--serif);
-    font-style:italic;
-    font-size:.7rem;letter-spacing:.25em;color:var(--gray);
-    padding:.6rem .4rem 0;text-align:right;
-  }
-  .swipe-hint{
-    text-align:center;font-size:.6rem;letter-spacing:.4em;
-    color:var(--gray);margin-top:1.5rem;
-  }
-
-  /* ===== 4. RIDE ===== */
-  .ride{background:var(--bg);}
-  .ride-video-wrap{
-    max-width:420px;margin:0 auto 3rem;
-    border:1px solid var(--line);
-  }
-  .ride-video-wrap video{width:100%;height:auto;}
-  .ride-grid{
-    display:flex;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    gap:2px;
-    -webkit-overflow-scrolling:touch;
-  }
-  .ride-grid::-webkit-scrollbar{height:3px;}
-  .ride-grid::-webkit-scrollbar-thumb{background:var(--line);}
-  .ride-grid img{
-    flex:0 0 62%;
-    max-width:320px;
-    height:380px;
-    object-fit:cover;
-    scroll-snap-align:center;
-    filter:grayscale(35%) contrast(1.05);
-  }
-
-  /* ===== 5. STORES ===== */
-  .stores{background:var(--bg2);}
-  .store-cards{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:1.2rem;
-  }
-  .store-card{
-    border:1px solid var(--line);
-    padding:2.6rem 1.6rem 2.6rem;
-    background:var(--bg);
-    text-align:center;
-    position:relative;
-  }
-  .store-card::before{
-    content:"";
-    position:absolute;top:0;left:50%;transform:translateX(-50%);
-    width:44px;height:1px;
-    background:var(--gold);
-  }
-  .store-card h3{
-    font-weight:400;
-    letter-spacing:.3em;
-    font-size:1.05rem;
-    margin:1.2rem 0 .2rem;
-  }
-  .store-card .store-tag{
-    font-size:.6rem;letter-spacing:.35em;color:var(--gold);
-  }
-  .store-catch{
-    font-size:.95rem;
-    font-weight:400;
-    letter-spacing:.2em;
-    margin:1.5rem 0 1rem;
-  }
-  .store-copy{
-    font-size:.83rem;
-    color:#c9c9c9;
-    line-height:2.2;
-    text-align:left;
-    max-width:26em;
-    margin:0 auto 2rem;
-  }
-  .store-card .badge{
-    position:absolute;top:1rem;right:1rem;
-    border:1px solid var(--gray);
-    color:var(--gray);
-    font-size:.55rem;letter-spacing:.25em;
-    padding:.15rem .6rem;
-  }
-
-  /* ===== 6. RECRUIT ===== */
-  .recruit{
-    background:var(--bg);
-    position:relative;
-    overflow:hidden;
-  }
-  .recruit-bg{
-    position:absolute;inset:0;
-    background:url("LP_素材/S__45940769_0.jpg") center/cover no-repeat;
-    filter:grayscale(100%) brightness(.22);
-  }
-  .recruit .inner{position:relative;z-index:2;}
-  .recruit-copy{
-    text-align:center;
-    font-size:clamp(1.2rem,5vw,1.9rem);
-    letter-spacing:.3em;
-    margin-bottom:1rem;
-  }
-  .recruit-sub{
-    text-align:center;font-size:.8rem;color:#d0d0d0;
-    letter-spacing:.15em;margin-bottom:3rem;
-  }
-  .recruit-story{
-    max-width:640px;
-    margin:0 auto 3.5rem;
-    font-size:.88rem;
-    line-height:2.3;
-    color:#e2e2e2;
-    text-align:left;
-  }
-  .recruit-story p+p{margin-top:1.5rem;}
-  .recruit-plans{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:1.2rem;
-    max-width:880px;
-    margin:0 auto;
-  }
-  .recruit-plan{
-    border:1px solid rgba(255,255,255,.16);
-    background:rgba(10,10,10,.68);
-    padding:2.2rem 1.6rem;
-    text-align:left;
-  }
-  .recruit-plan h3{
-    font-weight:400;
-    letter-spacing:.3em;
-    font-size:1rem;
-    text-align:center;
-    margin-bottom:.2rem;
-  }
-  .recruit-plan .plan-tag{
-    text-align:center;
-    font-size:.6rem;letter-spacing:.3em;
-    color:var(--gold);
-    margin-bottom:1.6rem;
-  }
-  .recruit-plan dt{
-    color:var(--gray);
-    font-size:.65rem;
-    letter-spacing:.3em;
-    margin-top:1.2rem;
-  }
-  .recruit-plan dt:first-child{margin-top:0;}
-  .recruit-plan dd{
-    font-size:.82rem;
-    color:#ededed;
-    line-height:2;
-  }
-
-  /* ===== 7. GUEST ===== */
-  .guest{background:var(--bg2);}
-  .guest-copy{
-    text-align:center;
-    font-size:.88rem;
-    letter-spacing:.12em;
-    line-height:2.4;
-    color:#d6d6d6;
-    max-width:560px;
-    margin:0 auto;
-  }
-  .guest-links{
-    display:flex;flex-wrap:wrap;gap:1rem;
-    justify-content:center;
-    margin-top:2rem;
-  }
-
-  /* ===== CTA ===== */
-  .cta-row{text-align:center;margin-top:2.4rem;}
-  .btn{
-    display:inline-block;
-    border:1px solid var(--gold);
-    padding:1rem 3.2rem;
-    font-size:.75rem;
-    letter-spacing:.4em;
-    text-indent:.4em;
-    text-transform:uppercase;
-    transition:background .3s,color .3s,border-color .3s;
-  }
-  .btn:hover{background:var(--gold);border-color:var(--gold);color:#0a0a0a;}
-  .btn--sm{padding:.85rem 2rem;font-size:.65rem;}
-
-  /* ===== FOOTER ===== */
-  footer{
-    padding:4rem 1.25rem 3rem;
-    border-top:1px solid var(--line);
-    text-align:center;
-  }
-  footer .logotype{font-size:.85rem;margin:1.5rem 0;}
-  .sns{
-    display:flex;justify-content:center;gap:2rem;
-    font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;
-    color:var(--gray);
-    margin-bottom:2rem;
-  }
-  .sns a:hover{color:var(--fg);}
-  .copyright{font-size:.6rem;letter-spacing:.2em;color:var(--gray);}
-
-  /* ===== reveal ===== */
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease;}
-  .reveal.on{opacity:1;transform:none;}
-
-  /* ===== PC ===== */
-  @media(min-width:768px){
-    section{padding:7.5rem 2rem;}
-    .store-cards{grid-template-columns:repeat(2,1fr);}
-    .recruit-plans{grid-template-columns:repeat(2,1fr);}
-    .slide{flex:0 0 72%;}
-    .ride-grid img{flex:0 0 24%;}
-  }
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<div class="world-bg" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="site-brand">
+    <a href="index.html"><img class="site-brand-mark" src="LP_素材/logo_create_group.png" alt="CREATE GROUP"></a>
+    <p class="site-brand-en">CREATE GROUP</p>
+    <p class="site-brand-jp">Create Group Official Site</p>
+  </div>
+  <button class="nav-toggle" aria-label="メニュー" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="site-nav">
+    <a href="index.html"><span class="nav-en">Top</span><span class="nav-ja">トップ</span></a>
+    <a href="gallery.html"><span class="nav-en">Gallery</span><span class="nav-ja">ギャラリー</span></a>
+    <a href="shoplist.html"><span class="nav-en">ShopList</span><span class="nav-ja">店舗一覧</span></a>
+    <a href="recruit.html"><span class="nav-en">Recruit</span><span class="nav-ja">採用情報</span></a>
+    <a href="#contact"><span class="nav-en">Contact</span><span class="nav-ja">お問い合わせ</span></a>
+    <a href="index.html#guest">お客様相談窓口</a>
+  </nav>
+</header>
 
 <!-- ===== 1. HERO ===== -->
 <header class="hero">
   <video autoplay muted loop playsinline poster="LP_素材/S__45940769_0.jpg">
-    <source src="LP_素材/vision_hero.mp4" type="video/mp4">
+    <source src="LP_素材/vision_hero_loop.webm" type="video/webm">
+    <source src="LP_素材/vision_hero_loop.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
-  <div class="hero-content">
-    <div class="emblem"></div>
-    <h1 class="logotype">Create Group</h1>
-    <p class="hero-copy">男に惚れろ。</p>
-    <p class="hero-copy-en">The Kind of Man You Can't Ignore.</p>
-  </div>
   <div class="scroll-cue"><span class="arrow"></span>SCROLL</div>
 </header>
 
-<!-- ===== 2. STATEMENT ===== -->
-<section class="statement">
-  <div class="inner">
-    <p class="sec-label reveal">Statement</p>
-    <h2 class="sec-title kinetic">人が変われば、未来は変わる。</h2>
-    <p class="lead reveal">CREATE GROUPは、人の可能性を信じ、<br>仲間とともに新しい未来を創り続ける。</p>
-    <p class="statement-note reveal">名古屋、栄。ここから、夜の常識を塗り替える。</p>
-    <div class="gold-rule reveal"></div>
-    <p class="statement-tagline kinetic">信念は、継承される。</p>
+<!-- ===== TRUCK CINEMA（ヒーロー直下・横スライドバナー）=====
+     ※プレースホルダー：中身は暫定で既存の横長素材を流用。
+       2026年8月以降、実際のトラックシネマ素材（横長画像・動画）に差し替えること。 -->
+<section class="truckcinema" id="truckcinema">
+  <div class="tc-layout">
+    <div class="tc-label" aria-hidden="true">
+      <span class="tc-label-en">TRUCK CINEMA</span>
+      <span class="tc-label-jp">トラックシネマ</span>
+    </div>
+    <div class="tc-slider-wrap reveal">
+      <div class="tc-slider">
+        <!-- ▼暫定素材（トラックシネマ制作前）。2026-08〜実素材へ差し替え -->
+        <figure class="tc-slide">
+          <img src="LP_素材/S__45940767_0.jpg" alt="トラックシネマ（2026年8月〜公開予定）" loading="lazy">
+          <div class="tc-grad"></div>
+          <figcaption class="tc-cap">
+            <p class="tc-idx">01 / Truck Cinema</p>
+            <p class="tc-soon">Coming August 2026</p>
+          </figcaption>
+        </figure>
+        <figure class="tc-slide">
+          <img src="LP_素材/S__45940770_0.jpg" alt="トラックシネマ（2026年8月〜公開予定）" loading="lazy">
+          <div class="tc-grad"></div>
+          <figcaption class="tc-cap">
+            <p class="tc-idx">02 / Truck Cinema</p>
+            <p class="tc-soon">2026年8月〜公開予定</p>
+          </figcaption>
+        </figure>
+        <figure class="tc-slide">
+          <img src="LP_素材/S__45940771_0.jpg" alt="トラックシネマ（2026年8月〜公開予定）" loading="lazy">
+          <div class="tc-grad"></div>
+          <figcaption class="tc-cap">
+            <p class="tc-idx">03 / Truck Cinema</p>
+            <p class="tc-soon">Coming August 2026</p>
+          </figcaption>
+        </figure>
+      </div>
+      <p class="swipe-hint">— SWIPE —</p>
+    </div>
   </div>
 </section>
 
-<!-- ===== 3. GALLERY ===== -->
-<section class="gallery">
-  <div class="reveal">
-    <p class="sec-label">Campaign</p>
+<!-- ===== NEWS & TOPICS ===== -->
+<section class="news" id="news">
+  <div class="inner chapter reveal">
+    <span class="chapter-no">News &amp; Topics</span>
+    <p class="chapter-en">Coming <em>Soon.</em></p>
+    <h2 class="sec-title">最新情報は近日公開</h2>
+    <span class="chapter-line"></span>
+  </div>
+</section>
+
+<!-- ===== 4. GALLERY ===== -->
+<section class="gallery" id="gallery">
+  <div class="inner chapter reveal">
+    <span class="chapter-no">Chapter 03 — Campaign</span>
+    <p class="chapter-en">Born to <em>Be Seen.</em></p>
     <h2 class="sec-title">男に惚れろ。</h2>
+    <span class="chapter-line"></span>
   </div>
-  <div class="slider reveal">
-    <figure class="slide"><img src="LP_素材/S__45940766_0.jpg" alt="男に惚れろ。全く新しいクリエイトが鼓動する。" loading="lazy"><figcaption>01 / PULSE</figcaption></figure>
-    <figure class="slide"><img src="LP_素材/S__45940767_0.jpg" alt="CREATE GROUP ポートレート" loading="lazy"><figcaption>02 / DUO</figcaption></figure>
-    <figure class="slide"><img src="LP_素材/S__45940768_0.jpg" alt="CREATE GROUP ポートレート" loading="lazy"><figcaption>03 / DUO II</figcaption></figure>
-    <figure class="slide"><img src="LP_素材/S__45940769_0.jpg" alt="CREATE GROUP エンブレム" loading="lazy"><figcaption>04 / EMBLEM</figcaption></figure>
-    <figure class="slide"><img src="LP_素材/S__45940770_0.jpg" alt="CREATE GROUP 3人" loading="lazy"><figcaption>05 / TRIO</figcaption></figure>
-    <figure class="slide"><img src="LP_素材/S__45940771_0.jpg" alt="CREATE GROUP ストリート" loading="lazy"><figcaption>06 / STREET</figcaption></figure>
-    <figure class="slide"><img src="LP_素材/S__45940772_0.jpg" alt="男に惚れろ。The Kind of Man You Can't Ignore." loading="lazy"><figcaption>07 / ICON</figcaption></figure>
+
+  <figure class="plate reveal">
+    <img src="LP_素材/S__45940766_0.jpg" alt="男に惚れろ。全く新しいクリエイトが鼓動する。" loading="lazy">
+    <div class="plate-grad"></div>
+    <figcaption class="plate-cap">
+      <p class="idx">01 / PULSE</p>
+      <p class="en">The Pulse of a <em>New Era.</em></p>
+      <p class="jp">全く新しいクリエイトが、鼓動する。</p>
+    </figcaption>
+  </figure>
+
+  <div class="slider-wrap reveal">
+    <div class="slider">
+      <figure class="slide">
+        <img src="LP_素材/S__45940767_0.jpg" alt="CREATE GROUP ポートレート" loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">02 / DUO</p><p class="en">Side by <em>Side.</em></p><p class="jp">二人で、頂へ。</p></figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="LP_素材/S__45940768_0.jpg" alt="CREATE GROUP ポートレート" loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">03 / BOND</p><p class="en">Bound by <em>Belief.</em></p><p class="jp">信念で、繋がる。</p></figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="LP_素材/S__45940769_0.jpg" alt="CREATE GROUP エンブレム" loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">04 / EMBLEM</p><p class="en">The Mark of a <em>Man.</em></p><p class="jp">男の、証。</p></figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="LP_素材/S__45940770_0.jpg" alt="CREATE GROUP 3人" loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">05 / TRIO</p><p class="en">Three, as <em>One.</em></p><p class="jp">三人、ひとつの信念。</p></figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="LP_素材/S__45940771_0.jpg" alt="CREATE GROUP ストリート" loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">06 / STREET</p><p class="en">Own the <em>Night.</em></p><p class="jp">夜を、支配する。</p></figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="LP_素材/S__45940772_0.jpg" alt="男に惚れろ。The Kind of Man You Can't Ignore." loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">07 / ICON</p><p class="en">Impossible to <em>Ignore.</em></p><p class="jp">目を、逸らせない。</p></figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="LP_素材/ai_generated/gallery_mask_walking.png" alt="仮面をつけ歩みを進める人物" loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">08 / MOTION</p><p class="en">Always in <em>Motion.</em></p><p class="jp">歩みは、止まらない。</p></figcaption>
+      </figure>
+    </div>
+    <p class="swipe-hint">— SWIPE —</p>
   </div>
-  <p class="swipe-hint">— SWIPE —</p>
 </section>
 
-<!-- ===== 4. RIDE ===== -->
+<!-- ===== 5. RIDE ===== -->
 <section class="ride">
-  <div class="reveal">
-    <p class="sec-label">Motion</p>
+  <div class="inner chapter reveal">
+    <span class="chapter-no">Chapter 04 — Motion</span>
+    <p class="chapter-en">The Pulse <em>Never Stops.</em></p>
     <h2 class="sec-title">走り出した鼓動は、止まらない。</h2>
+    <span class="chapter-line"></span>
   </div>
-  <div class="ride-video-wrap reveal">
+
+  <figure class="plate reveal">
     <video autoplay muted loop playsinline>
       <source src="LP_素材/804936764.694984.mp4" type="video/mp4">
     </video>
+    <div class="plate-grad"></div>
+    <figcaption class="plate-cap">
+      <p class="idx">00 / DRIVE</p>
+      <p class="en">In Constant <em>Motion.</em></p>
+      <p class="jp">止まることを、知らない。</p>
+    </figcaption>
+  </figure>
+
+  <figure class="plate reveal">
+    <img data-parallax="0.1" src="LP_素材/ai_generated/ride_mask_motorcycle.png" alt="仮面をつけバイクにまたがる男">
+    <div class="plate-grad"></div>
+    <figcaption class="plate-cap">
+      <p class="idx">— / MASK</p>
+      <p class="en">Behind the <em>Mask.</em></p>
+      <p class="jp">素顔は、見せない。</p>
+    </figcaption>
+  </figure>
+
+  <div class="slider-wrap reveal">
+    <div class="slider">
+      <figure class="slide">
+        <img src="LP_素材/5F8A1472-復元_0.jpg" alt="ポートレート" loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">01 / DRIVE</p><p class="en">Never Look <em>Back.</em></p><p class="jp">振り返らない。</p></figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="LP_素材/5F8A1492 のコピー_0.jpg" alt="ポートレート" loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">02 / EDGE</p><p class="en">On the <em>Edge.</em></p><p class="jp">刃の上を、行く。</p></figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="LP_素材/5F8A1510 のコピー_0.jpg" alt="ポートレート" loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">03 / FORWARD</p><p class="en">Always <em>Forward.</em></p><p class="jp">前だけを、見て。</p></figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="LP_素材/5F8A1532 のコピー_0.jpg" alt="ポートレート" loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">04 / RISE</p><p class="en">Rise and <em>Rise.</em></p><p class="jp">昇り続ける。</p></figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="LP_素材/5F8A1549 のコピー_0.jpg" alt="ポートレート" loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">05 / GAZE</p><p class="en">Eyes on the <em>Top.</em></p><p class="jp">視線は、頂へ。</p></figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="LP_素材/5F8A1573 のコピー_0.jpg" alt="ポートレート" loading="lazy">
+        <div class="plate-grad"></div>
+        <figcaption class="plate-cap"><p class="idx">06 / SOUL</p><p class="en">Heart in <em>Motion.</em></p><p class="jp">鼓動の、まま。</p></figcaption>
+      </figure>
+    </div>
+    <p class="swipe-hint">— SWIPE —</p>
   </div>
-  <div class="ride-grid reveal">
-    <img src="LP_素材/5F8A1472-復元_0.jpg" alt="ポートレート" loading="lazy">
-    <img src="LP_素材/5F8A1492 のコピー_0.jpg" alt="ポートレート" loading="lazy">
-    <img src="LP_素材/5F8A1510 のコピー_0.jpg" alt="ポートレート" loading="lazy">
-    <img src="LP_素材/5F8A1532 のコピー_0.jpg" alt="ポートレート" loading="lazy">
-    <img src="LP_素材/5F8A1549 のコピー_0.jpg" alt="ポートレート" loading="lazy">
-    <img src="LP_素材/5F8A1573 のコピー_0.jpg" alt="ポートレート" loading="lazy">
-  </div>
-  <p class="swipe-hint">— SWIPE —</p>
 </section>
 
-<!-- ===== 5. STORES ===== -->
-<section class="stores">
+<!-- ===== 6. STORES ===== -->
+<section class="stores" id="stores">
   <div class="inner">
-    <div class="reveal">
-      <p class="sec-label">Stores</p>
-      <h2 class="sec-title">STORES</h2>
+    <div class="chapter reveal">
+      <span class="chapter-no">Chapter 05 — Stores</span>
+      <p class="chapter-en">Where the <em>Night Begins.</em></p>
+      <h2 class="sec-title">夜が、始まる場所。</h2>
+      <span class="chapter-line"></span>
     </div>
     <div class="store-cards reveal">
       <div class="store-card">
@@ -537,12 +263,13 @@
   </div>
 </section>
 
-<!-- ===== 6. RECRUIT ===== -->
-<section class="recruit">
-  <div class="recruit-bg"></div>
+<!-- ===== 7. RECRUIT ===== -->
+<section class="recruit" id="recruit">
+  <div class="recruit-bg" data-parallax="0.1"></div>
   <div class="inner">
-    <div class="reveal">
-      <p class="sec-label">Recruit</p>
+    <div class="chapter reveal">
+      <span class="chapter-no">Chapter 06 — Recruit</span>
+      <p class="chapter-en">There Is No <em>Ceiling Here.</em></p>
       <p class="recruit-copy">共に鼓動する男を、求む。</p>
       <p class="recruit-sub">未経験も、移籍も。惚れられる男になる場所がここにある。</p>
     </div>
@@ -589,12 +316,28 @@
   </div>
 </section>
 
-<!-- ===== 7. GUEST ===== -->
-<section class="guest">
+<!-- ===== 8. GUEST ===== -->
+<section class="guest" id="guest">
+  <div class="guest-bg" aria-hidden="true"></div>
+  <div class="inner">
+    <div class="chapter reveal">
+      <span class="chapter-no">Chapter 07 — For Guests</span>
+      <p class="chapter-en">Two Doors, <em>One Night.</em></p>
+      <h2 class="sec-title">惚れに、来ませんか。</h2>
+      <span class="chapter-line"></span>
+    </div>
+  </div>
+  <figure class="plate reveal" style="margin:0 0 4.5rem;">
+    <img data-parallax="0.1" src="LP_素材/ai_generated/guest_suit_woman.png" alt="黒いスーツに身を包んだ女性">
+    <div class="plate-grad"></div>
+    <figcaption class="plate-cap">
+      <p class="idx">— / GUEST</p>
+      <p class="en">Come, Be <em>Adored.</em></p>
+      <p class="jp">惚れに、来ませんか。</p>
+    </figcaption>
+  </figure>
   <div class="inner">
     <div class="reveal">
-      <p class="sec-label">For Guests</p>
-      <h2 class="sec-title">惚れに、来ませんか。</h2>
       <p class="guest-copy">初めての夜も、いつもの夜も。<br>CREATEとCREATE Plus、二つの扉があなたを待っている。<br>営業時間・料金システム・初回のご案内は、各店舗の公式サイトへ。</p>
       <div class="guest-links">
         <a class="btn btn--sm" href="https://www.host2.jp/shop/create/" target="_blank" rel="noopener">CREATE</a>
@@ -608,8 +351,22 @@
   </div>
 </section>
 
-<!-- ===== 8. FOOTER ===== -->
-<footer>
+<!-- ===== PHILOSOPHY（旧philosophy.htmlより凝縮移植・フッター直前の締め）===== -->
+<section class="statement philosophy-outro" id="philosophy-outro">
+  <div class="inner">
+    <div class="chapter reveal">
+      <div class="emblem"></div>
+      <span class="chapter-no">Philosophy — 理念</span>
+    </div>
+    <p class="statement-en reveal">When a Man Changes,<br>the <em>Future</em> Changes.</p>
+    <h2 class="sec-title kinetic">人が変われば、未来は変わる。</h2>
+    <div class="gold-rule reveal"></div>
+    <p class="statement-tagline kinetic">信念は、継承される。</p>
+  </div>
+</section>
+
+<!-- ===== 9. FOOTER ===== -->
+<footer id="contact">
   <div class="emblem small"></div>
   <p class="logotype">Create Group</p>
   <nav class="sns">
@@ -620,53 +377,6 @@
   <p class="copyright">&copy; 2026 CREATE GROUP. All Rights Reserved.</p>
 </footer>
 
-<script>
-  // スクロールで要素をフェードイン
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
-    });
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-  // キネティックタイポ（スクロール連動・1文字ずつ）
-  const kinetics = document.querySelectorAll('.kinetic');
-  kinetics.forEach(el=>{
-    const text = el.textContent;
-    el.setAttribute('aria-label', text);
-    el.textContent = '';
-    [...text].forEach(ch=>{
-      const s = document.createElement('span');
-      s.textContent = ch;
-      s.setAttribute('aria-hidden','true');
-      el.appendChild(s);
-    });
-  });
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduced){
-    kinetics.forEach(el=>[...el.children].forEach(s=>{s.style.opacity=1;s.style.transform='none';}));
-  }else{
-    let ticking = false;
-    const kinTick = ()=>{
-      ticking = false;
-      const vh = innerHeight;
-      kinetics.forEach(el=>{
-        const r = el.getBoundingClientRect();
-        if(r.top > vh || r.bottom < 0) return;
-        const p = Math.min(Math.max((vh*0.92 - r.top)/(vh*0.5), 0), 1);
-        const spans = el.children, n = spans.length;
-        for(let i=0;i<n;i++){
-          const cp = Math.min(Math.max((p - (i/n)*0.6)/0.4, 0), 1);
-          spans[i].style.opacity = cp;
-          spans[i].style.transform = `translateY(${((1-cp)*0.55).toFixed(3)}em)`;
-        }
-      });
-    };
-    const onScroll = ()=>{ if(!ticking){ticking = true; requestAnimationFrame(kinTick);} };
-    addEventListener('scroll', onScroll, {passive:true});
-    addEventListener('resize', onScroll, {passive:true});
-    kinTick();
-  }
-</script>
+<script src="assets/site.js"></script>
 </body>
 </html>
