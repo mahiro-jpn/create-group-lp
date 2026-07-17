@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if('scrollRestoration' in history){history.scrollRestoration='manual';}</script>
 <title>CREATE GROUP — ShopList ／ 店舗一覧</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Sans+JP:wght@100;300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=5">
 </head>
 <body class="subpage">
 <div class="world-bg" aria-hidden="true"></div>
@@ -23,10 +24,11 @@
   </button>
   <nav class="site-nav">
     <a href="index.html"><span class="nav-en">Top</span><span class="nav-ja">トップ</span></a>
-    <a href="index.html#gallery"><span class="nav-en">Gallery</span><span class="nav-ja">ギャラリー</span></a>
+    <a href="gallery.html"><span class="nav-en">Gallery</span><span class="nav-ja">ギャラリー</span></a>
     <a href="index.html#stores"><span class="nav-en">ShopList</span><span class="nav-ja">店舗一覧</span></a>
     <a href="recruit.html"><span class="nav-en">Recruit</span><span class="nav-ja">採用情報</span></a>
     <a href="#contact"><span class="nav-en">Contact</span><span class="nav-ja">お問い合わせ</span></a>
+    <a href="#" onclick="return false;">お客様相談窓口</a>
   </nav>
 </header>
 
@@ -42,12 +44,11 @@
     </div>
     <div class="store-cards reveal">
       <div class="store-card store-card--rich">
-        <!-- ▼プレースホルダー：実店舗の内観写真が未入手のためAI生成のムード画像を使用。撮影後に店内写真へ差し替え -->
-        <div class="store-photo">
-          <img src="LP_素材/ai_generated/store_create_interior.png" alt="CREATE 店舗イメージ" loading="lazy">
+        <div class="store-photo store-photo--create">
+          <img src="LP_素材/store_create_interior_host.png" alt="CREATE 店舗イメージ" loading="lazy">
           <div class="store-photo-grad"></div>
         </div>
-        <div class="emblem small"></div>
+        <img class="emblem-logo small" src="LP_素材/logo_create_group.png" alt="CREATE GROUP">
         <h3>CREATE</h3>
         <p class="store-tag">FLAGSHIP</p>
         <p class="store-catch">信念を継承する男たち</p>
@@ -60,12 +61,11 @@
         <a class="btn btn--sm" href="https://www.host2.jp/shop/create/" target="_blank" rel="noopener">Official Site</a>
       </div>
       <div class="store-card store-card--rich">
-        <!-- ▼プレースホルダー：実店舗の内観写真が未入手のためAI生成のムード画像を使用。撮影後に店内写真へ差し替え -->
-        <div class="store-photo">
-          <img src="LP_素材/ai_generated/store_createplus_interior.png" alt="CREATE PLUS 店舗イメージ" loading="lazy">
+        <div class="store-photo store-photo--plus">
+          <img src="LP_素材/store_createplus_interior_host.png" alt="CREATE PLUS 店舗イメージ" loading="lazy">
           <div class="store-photo-grad"></div>
         </div>
-        <div class="emblem small"></div>
+        <img class="emblem-logo small emblem-logo--plus" src="LP_素材/logo_create_plus.png" alt="CREATE PLUS">
         <h3>CREATE PLUS</h3>
         <p class="store-tag">SECOND</p>
         <p class="store-catch">未来を創る男たち</p>
@@ -78,13 +78,8 @@
         <a class="btn btn--sm" href="https://www.host2.jp/shop/createplus/" target="_blank" rel="noopener">Official Site</a>
       </div>
       <div class="store-card">
-        <div class="emblem small"></div>
-        <h3>HIMAWARI</h3>
-        <p class="store-tag">GROUP</p>
-      </div>
-      <div class="store-card">
         <span class="badge">COMING 2027</span>
-        <div class="emblem small"></div>
+        <img class="emblem-logo small" src="LP_素材/logo_create_group.png" alt="CREATE GROUP">
         <h3>CREATE ESCORT</h3>
         <p class="store-tag">NEW PROJECT</p>
       </div>
@@ -95,7 +90,7 @@
 
 <!-- ===== FOOTER ===== -->
 <footer id="contact">
-  <div class="emblem small"></div>
+  <img class="emblem-logo small" src="LP_素材/logo_create_group.png" alt="CREATE GROUP">
   <p class="logotype">Create Group</p>
   <nav class="sns">
     <a href="#" onclick="return false;">Instagram（仮）</a>
@@ -105,6 +100,6 @@
   <p class="copyright">&copy; 2026 CREATE GROUP. All Rights Reserved.</p>
 </footer>
 
-<script src="assets/site.js"></script>
+<script src="assets/site.js?v=4"></script>
 </body>
 </html>

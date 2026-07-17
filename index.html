@@ -3,11 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if('scrollRestoration' in history){history.scrollRestoration='manual';}</script>
 <title>CREATE GROUP — 男に惚れろ。</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Sans+JP:wght@100;300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=5">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CREATE GROUP",
+  "url": "https://mahiro-jpn.github.io/create-group-lp/",
+  "logo": "https://mahiro-jpn.github.io/create-group-lp/LP_素材/logo_create_group.png",
+  "sameAs": [],
+  "subOrganization": [
+    {"@type": "NightClub", "name": "CREATE"},
+    {"@type": "NightClub", "name": "CREATE PLUS"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NightClub",
+  "name": "CREATE",
+  "url": "https://mahiro-jpn.github.io/create-group-lp/shoplist.html",
+  "telephone": "052-222-7222",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "栄4-10-2 第6オーシャンビル4F",
+    "addressLocality": "名古屋市中区",
+    "addressRegion": "愛知県",
+    "addressCountry": "JP"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "20:00",
+      "closes": "25:00"
+    }
+  ],
+  "parentOrganization": {"@type": "Organization", "name": "CREATE GROUP"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NightClub",
+  "name": "CREATE PLUS",
+  "url": "https://mahiro-jpn.github.io/create-group-lp/shoplist.html",
+  "telephone": "052-212-5661",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "栄4-11-1 アイランドビル1F",
+    "addressLocality": "名古屋市中区",
+    "addressRegion": "愛知県",
+    "addressCountry": "JP"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "20:00",
+      "closes": "24:30"
+    }
+  ],
+  "parentOrganization": {"@type": "Organization", "name": "CREATE GROUP"}
+}
+</script>
 </head>
 <body>
 <div class="world-bg" aria-hidden="true"></div>
@@ -23,10 +88,11 @@
   </button>
   <nav class="site-nav">
     <a href="index.html"><span class="nav-en">Top</span><span class="nav-ja">トップ</span></a>
-    <a href="index.html#gallery"><span class="nav-en">Gallery</span><span class="nav-ja">ギャラリー</span></a>
+    <a href="gallery.html"><span class="nav-en">Gallery</span><span class="nav-ja">ギャラリー</span></a>
     <a href="index.html#stores"><span class="nav-en">ShopList</span><span class="nav-ja">店舗一覧</span></a>
     <a href="recruit.html"><span class="nav-en">Recruit</span><span class="nav-ja">採用情報</span></a>
     <a href="#contact"><span class="nav-en">Contact</span><span class="nav-ja">お問い合わせ</span></a>
+    <a href="#" onclick="return false;">お客様相談窓口</a>
   </nav>
 </header>
 
@@ -47,7 +113,6 @@
   <div class="tc-layout">
     <div class="tc-label" aria-hidden="true">
       <span class="tc-label-en">CREATE CINEMA</span>
-      <span class="tc-label-jp">クリエイト シネマ</span>
     </div>
     <div class="tc-slider-wrap reveal">
       <div class="tc-slider">
@@ -55,26 +120,14 @@
         <figure class="tc-slide">
           <img src="LP_素材/S__45940767_0.jpg" alt="CREATE CINEMA（2026年8月〜公開予定）" loading="lazy">
           <div class="tc-grad"></div>
-          <figcaption class="tc-cap">
-            <p class="tc-idx">01 / Create Cinema</p>
-            <p class="tc-soon">Coming August 2026</p>
-          </figcaption>
         </figure>
         <figure class="tc-slide">
           <img src="LP_素材/S__45940770_0.jpg" alt="CREATE CINEMA（2026年8月〜公開予定）" loading="lazy">
           <div class="tc-grad"></div>
-          <figcaption class="tc-cap">
-            <p class="tc-idx">02 / Create Cinema</p>
-            <p class="tc-soon">2026年8月〜公開予定</p>
-          </figcaption>
         </figure>
         <figure class="tc-slide">
           <img src="LP_素材/S__45940771_0.jpg" alt="CREATE CINEMA（2026年8月〜公開予定）" loading="lazy">
           <div class="tc-grad"></div>
-          <figcaption class="tc-cap">
-            <p class="tc-idx">03 / Create Cinema</p>
-            <p class="tc-soon">Coming August 2026</p>
-          </figcaption>
         </figure>
       </div>
       <p class="swipe-hint">— SWIPE —</p>
@@ -87,113 +140,43 @@
   <div class="inner chapter reveal">
     <span class="chapter-no">Close-Up</span>
     <p class="chapter-en">Close-Up <em>Host.</em></p>
-    <h2 class="sec-title">クローズアップ・ホスト</h2>
     <span class="chapter-line"></span>
   </div>
 
   <div class="closeup-wrap reveal">
-    <div class="closeup-grid">
-      <!-- ▼プレースホルダー：実在ホスト名は未確定のため号数のみ。写真・氏名が届き次第差し替え -->
+    <div class="closeup-grid" data-carousel>
+      <!-- ▼Vol.01は実写ホスト写真に差し替え済み（2026-07-12）。Vol.02以降はプレースホルダーのまま：写真・氏名が届き次第差し替え -->
       <figure class="cu-card">
-        <img src="LP_素材/5F8A1502 のコピー_0.jpg" alt="CREATE GROUP クローズアップホスト Vol.01" loading="lazy">
+        <img src="LP_素材/host_portrait_01.jpg" alt="CREATE GROUP クローズアップホスト Vol.01" loading="lazy">
         <div class="cu-grad"></div>
-        <figcaption class="cu-cap">
-          <p class="cu-label">CLOSE-UP HOST</p>
-          <p class="cu-vol">Volume : 01</p>
-          <p class="cu-sign">Vol. 01</p>
-        </figcaption>
       </figure>
       <figure class="cu-card">
         <img src="LP_素材/5F8A1524 のコピー_0.jpg" alt="CREATE GROUP クローズアップホスト Vol.02" loading="lazy">
         <div class="cu-grad"></div>
-        <figcaption class="cu-cap">
-          <p class="cu-label">CLOSE-UP HOST</p>
-          <p class="cu-vol">Volume : 02</p>
-          <p class="cu-sign">Vol. 02</p>
-        </figcaption>
       </figure>
       <figure class="cu-card">
         <img src="LP_素材/5F8A1566 のコピー_0.jpg" alt="CREATE GROUP クローズアップホスト Vol.03" loading="lazy">
         <div class="cu-grad"></div>
-        <figcaption class="cu-cap">
-          <p class="cu-label">CLOSE-UP HOST</p>
-          <p class="cu-vol">Volume : 03</p>
-          <p class="cu-sign">Vol. 03</p>
-        </figcaption>
       </figure>
       <figure class="cu-card">
         <img src="LP_素材/5F8A1576 のコピー_0.jpg" alt="CREATE GROUP クローズアップホスト Vol.04" loading="lazy">
         <div class="cu-grad"></div>
-        <figcaption class="cu-cap">
-          <p class="cu-label">CLOSE-UP HOST</p>
-          <p class="cu-vol">Volume : 04</p>
-          <p class="cu-sign">Vol. 04</p>
-        </figcaption>
       </figure>
     </div>
-    <p class="swipe-hint">— SWIPE —</p>
   </div>
 </section>
 
-<!-- ===== GALLERY ===== -->
+<!-- ===== GALLERY（TOPはティザーのみ。写真多数のため詳細はgallery.htmlへ誘導） ===== -->
 <section class="gallery" id="gallery">
-  <div class="inner chapter reveal">
-    <span class="chapter-no">Chapter 03 — Campaign</span>
-    <p class="chapter-en">Born to <em>Be Seen.</em></p>
-    <h2 class="sec-title">男に惚れろ。</h2>
-    <span class="chapter-line"></span>
-  </div>
-
-  <figure class="plate reveal">
-    <img src="LP_素材/S__45940766_0.jpg" alt="男に惚れろ。全く新しいクリエイトが鼓動する。" loading="lazy">
-    <div class="plate-grad"></div>
-    <figcaption class="plate-cap">
-      <p class="idx">01 / PULSE</p>
-      <p class="en">The Pulse of a <em>New Era.</em></p>
-      <p class="jp">全く新しいクリエイトが、鼓動する。</p>
-    </figcaption>
-  </figure>
-
-  <div class="slider-wrap reveal">
-    <div class="slider">
-      <figure class="slide">
-        <img src="LP_素材/S__45940767_0.jpg" alt="CREATE GROUP ポートレート" loading="lazy">
-        <div class="plate-grad"></div>
-        <figcaption class="plate-cap"><p class="idx">02 / DUO</p><p class="en">Side by <em>Side.</em></p><p class="jp">二人で、頂へ。</p></figcaption>
-      </figure>
-      <figure class="slide">
-        <img src="LP_素材/S__45940768_0.jpg" alt="CREATE GROUP ポートレート" loading="lazy">
-        <div class="plate-grad"></div>
-        <figcaption class="plate-cap"><p class="idx">03 / BOND</p><p class="en">Bound by <em>Belief.</em></p><p class="jp">信念で、繋がる。</p></figcaption>
-      </figure>
-      <figure class="slide">
-        <img src="LP_素材/S__45940769_0.jpg" alt="CREATE GROUP エンブレム" loading="lazy">
-        <div class="plate-grad"></div>
-        <figcaption class="plate-cap"><p class="idx">04 / EMBLEM</p><p class="en">The Mark of a <em>Man.</em></p><p class="jp">男の、証。</p></figcaption>
-      </figure>
-      <figure class="slide">
-        <img src="LP_素材/S__45940770_0.jpg" alt="CREATE GROUP 3人" loading="lazy">
-        <div class="plate-grad"></div>
-        <figcaption class="plate-cap"><p class="idx">05 / TRIO</p><p class="en">Three, as <em>One.</em></p><p class="jp">三人、ひとつの信念。</p></figcaption>
-      </figure>
-      <figure class="slide">
-        <img src="LP_素材/S__45940771_0.jpg" alt="CREATE GROUP ストリート" loading="lazy">
-        <div class="plate-grad"></div>
-        <figcaption class="plate-cap"><p class="idx">06 / STREET</p><p class="en">Own the <em>Night.</em></p><p class="jp">夜を、支配する。</p></figcaption>
-      </figure>
-      <figure class="slide">
-        <img src="LP_素材/S__45940772_0.jpg" alt="男に惚れろ。The Kind of Man You Can't Ignore." loading="lazy">
-        <div class="plate-grad"></div>
-        <figcaption class="plate-cap"><p class="idx">07 / ICON</p><p class="en">Impossible to <em>Ignore.</em></p><p class="jp">目を、逸らせない。</p></figcaption>
-      </figure>
-      <figure class="slide">
-        <img src="LP_素材/ai_generated/gallery_mask_walking.png" alt="仮面をつけ歩みを進める人物" loading="lazy">
-        <div class="plate-grad"></div>
-        <figcaption class="plate-cap"><p class="idx">08 / MOTION</p><p class="en">Always in <em>Motion.</em></p><p class="jp">歩みは、止まらない。</p></figcaption>
-      </figure>
+  <a class="gallery-teaser reveal" href="gallery.html" aria-label="CREATE GALLERYを見る">
+    <div class="inner chapter">
+      <p class="chapter-en">Create <em>Gallery.</em></p>
     </div>
-    <p class="swipe-hint">— SWIPE —</p>
-  </div>
+    <figure class="plate">
+      <img src="LP_素材/ai_generated/ride_mask_motorcycle.png" alt="CREATE GALLERY" loading="lazy">
+      <div class="plate-grad"></div>
+    </figure>
+  </a>
 </section>
 
 <!-- ===== NEWS & TOPICS ===== -->
@@ -210,56 +193,44 @@
 <section class="stores" id="stores">
   <div class="inner">
     <div class="chapter reveal">
-      <span class="chapter-no">Chapter 04 — Stores</span>
-      <p class="chapter-en">Where the <em>Night Begins.</em></p>
-      <h2 class="sec-title">夜が、始まる場所。</h2>
-      <span class="chapter-line"></span>
+      <p class="chapter-en">Shop<em>List.</em></p>
     </div>
     <div class="store-cards reveal">
-      <div class="store-card store-card--rich">
-        <!-- ▼プレースホルダー：実店舗の内観写真が未入手のためAI生成のムード画像を使用。撮影後に店内写真へ差し替え -->
-        <div class="store-photo">
-          <img src="LP_素材/ai_generated/store_create_interior.png" alt="CREATE 店舗イメージ" loading="lazy">
+      <a class="store-card store-card--rich" href="https://www.host2.jp/shop/create/" target="_blank" rel="noopener">
+        <div class="store-photo store-photo--create">
+          <img src="LP_素材/store_create_interior_host.png" alt="CREATE 店舗イメージ" loading="lazy">
           <div class="store-photo-grad"></div>
         </div>
-        <div class="emblem small"></div>
+        <img class="emblem-logo small" src="LP_素材/logo_create_group.png" alt="CREATE GROUP">
         <h3>CREATE</h3>
         <p class="store-tag">FLAGSHIP</p>
         <p class="store-catch">信念を継承する男たち</p>
         <p class="store-copy">静かな熱を秘めた男たちが、あなたの夜に火を灯す。広い空間とハイレベルな接客で味わう、特別な夜。</p>
         <dl class="store-info">
           <div><dt>Open</dt><dd>20:00 – 25:00（月曜定休）</dd></div>
-          <div><dt>Tel</dt><dd><a href="tel:0522227222">052-222-7222</a></dd></div>
+          <div><dt>Tel</dt><dd>052-222-7222</dd></div>
           <div><dt>Address</dt><dd>名古屋市中区栄4-10-2 第6オーシャンビル4F</dd></div>
         </dl>
-        <a class="btn btn--sm" href="https://www.host2.jp/shop/create/" target="_blank" rel="noopener">Official Site</a>
-      </div>
-      <div class="store-card store-card--rich">
-        <!-- ▼プレースホルダー：実店舗の内観写真が未入手のためAI生成のムード画像を使用。撮影後に店内写真へ差し替え -->
-        <div class="store-photo">
-          <img src="LP_素材/ai_generated/store_createplus_interior.png" alt="CREATE PLUS 店舗イメージ" loading="lazy">
+      </a>
+      <a class="store-card store-card--rich" href="https://www.host2.jp/shop/createplus/" target="_blank" rel="noopener">
+        <div class="store-photo store-photo--plus">
+          <img src="LP_素材/store_createplus_interior_host.png" alt="CREATE PLUS 店舗イメージ" loading="lazy">
           <div class="store-photo-grad"></div>
         </div>
-        <div class="emblem small"></div>
+        <img class="emblem-logo small emblem-logo--plus" src="LP_素材/logo_create_plus.png" alt="CREATE PLUS">
         <h3>CREATE PLUS</h3>
         <p class="store-tag">SECOND</p>
         <p class="store-catch">未来を創る男たち</p>
         <p class="store-copy">無邪気な笑顔の奥に潜む、挑発的な言葉と甘い罠。今夜、あなたの心をさらっていく。</p>
         <dl class="store-info">
           <div><dt>Open</dt><dd>20:00 – 00:30（完全週休2日制）</dd></div>
-          <div><dt>Tel</dt><dd><a href="tel:0522125661">052-212-5661</a></dd></div>
+          <div><dt>Tel</dt><dd>052-212-5661</dd></div>
           <div><dt>Address</dt><dd>名古屋市中区栄4-11-1 アイランドビル1F</dd></div>
         </dl>
-        <a class="btn btn--sm" href="https://www.host2.jp/shop/createplus/" target="_blank" rel="noopener">Official Site</a>
-      </div>
-      <div class="store-card">
-        <div class="emblem small"></div>
-        <h3>HIMAWARI</h3>
-        <p class="store-tag">GROUP</p>
-      </div>
+      </a>
       <div class="store-card">
         <span class="badge">COMING 2027</span>
-        <div class="emblem small"></div>
+        <img class="emblem-logo small" src="LP_素材/logo_create_group.png" alt="CREATE GROUP">
         <h3>CREATE ESCORT</h3>
         <p class="store-tag">NEW PROJECT</p>
       </div>
@@ -281,38 +252,9 @@
       <p>CREATEが約束するのは、給与という数字だけではない。信念を継承し、未来を創る男たちの集団——ここで得られるのは、仲間と共に成長する環境、自分を磨き続ける学び、そして"惚れられる男"へと変わるための経験。ここで築く未来こそが、最大の"待遇"だ。</p>
       <p>専属のファッションコーディネーターがあなたの魅力を引き出し、2026年からは人間力を磨く「HOST SCHOOL」が始動。トップホストには人生講習会を用意し、ホストクラブ経営のノウハウを学べる。将来はCREATEと共に出店したホストクラブを自分で買い取り、本部運営に携わる道も。グループが展開する飲食店やデザイン会社を買い取る権利まで——キャリアの天井は、ここにはない。</p>
     </div>
-    <div class="recruit-plans">
-      <div class="recruit-plan reveal">
-        <h3>CREATE</h3>
-        <p class="plan-tag">FLAGSHIP</p>
-        <dl>
-          <dt>給与</dt>
-          <dd>日給10,000円〜＋歩合＋各種手当（日払い対応）</dd>
-          <dt>勤務</dt>
-          <dd>20:00〜25:00（相談可）／月曜定休</dd>
-          <dt>応募資格</dt>
-          <dd>満18歳以上の男性／地方出張面接対応</dd>
-          <dt>育成</dt>
-          <dd>未経験者向け育成プログラムあり。在籍のほとんどが未経験スタート。</dd>
-        </dl>
-      </div>
-      <div class="recruit-plan reveal">
-        <h3>CREATE PLUS</h3>
-        <p class="plan-tag">SECOND</p>
-        <dl>
-          <dt>給与</dt>
-          <dd>体験入店 日給15,000円／初月保証 日給10,000円＋売上バック最大80%＋賞金多数（日払い対応）</dd>
-          <dt>待遇</dt>
-          <dd>入店祝い金・支度金・移籍金・ボーナス・各種賞金／寮費無料（1ヶ月）／スーツ支給・名刺無料／ヘアメイク・美容室無料／宣材写真・PV無料制作／食費無料・送迎あり・アフター代支給／引越しサポート・脱毛サロン・SNSプロデュース</dd>
-          <dt>勤務</dt>
-          <dd>20:00〜00:30／完全週休2日制（GW・お盆・正月・有給対応）</dd>
-          <dt>応募資格</dt>
-          <dd>18歳以上（高校生不可）／身分証持参</dd>
-          <dt>育成</dt>
-          <dd>9割以上が未経験スタート。専属コーディネーター＋個人コンサル＋特別育成プログラム。</dd>
-        </dl>
-      </div>
-    </div>
+    <a class="recruit-banner reveal" href="recruit.html" aria-label="求人情報を見る">
+      <img src="LP_素材/recruit_banner.jpg" alt="CREATE GROUP スタッフ募集">
+    </a>
     <div class="cta-row reveal">
       <a class="btn" href="#" onclick="return false;">Entry ／ 応募する</a>
       <p class="swipe-hint" style="margin-top:1rem;">※応募リンクは仮（LINE公式等に差し替え予定）</p>
@@ -322,7 +264,7 @@
 
 <!-- ===== FOOTER ===== -->
 <footer id="contact">
-  <div class="emblem small"></div>
+  <img class="emblem-logo small" src="LP_素材/logo_create_group.png" alt="CREATE GROUP">
   <p class="logotype">Create Group</p>
   <nav class="sns">
     <a href="#" onclick="return false;">Instagram（仮）</a>
@@ -332,6 +274,8 @@
   <p class="copyright">&copy; 2026 CREATE GROUP. All Rights Reserved.</p>
 </footer>
 
-<script src="assets/site.js"></script>
+<a class="floating-cta" href="#recruit">Entry <span aria-hidden="true">→</span></a>
+
+<script src="assets/site.js?v=4"></script>
 </body>
 </html>

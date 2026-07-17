@@ -1,13 +1,13 @@
 :root{
-  --bg:#0a0a0a;
-  --bg2:#141414;
+  --bg:#18150f;
+  --bg2:#221d16;
   --fg:#f5f5f5;
   --gray:#8a8a8a;
   --line:#2c2c2c;
-  --gold:#c4974a;
-  --gold-bright:#e8c57a;
-  --gold-soft:rgba(196,151,74,.35);
-  --gold-mist:rgba(196,151,74,.08);
+  --gold:#b76e4d;
+  --gold-bright:#d99a78;
+  --gold-soft:rgba(183,110,77,.35);
+  --gold-mist:rgba(183,110,77,.08);
   --serif:'EB Garamond',Georgia,'Times New Roman',serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -20,6 +20,17 @@ body{
   line-height:1.9;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
+  position:relative;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:5000;
+  opacity:.05;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 img,video{display:block;max-width:100%;}
 a{color:inherit;text-decoration:none;}
@@ -48,7 +59,7 @@ a{color:inherit;text-decoration:none;}
   margin:1.8rem auto 0;
 }
 /* ===== 大きな負の空間 ===== */
-section{padding:9rem 1.5rem;position:relative;}
+section{padding:1.5rem 1.5rem;position:relative;}
 /* セクション間の金グラデーション区切り */
 .gallery::before,.ride::before,.closeup::before,.stores::before,.guest::before,.recruit::before{
   content:"";
@@ -62,7 +73,7 @@ section{padding:9rem 1.5rem;position:relative;}
 /* ===== 章マーカー（Chapter）===== */
 .chapter{
   text-align:center;
-  margin-bottom:4.5rem;
+  margin-bottom:.8rem;
 }
 .chapter .emblem{margin-bottom:2.2rem;opacity:.9;}
 .chapter-no{
@@ -84,13 +95,13 @@ section{padding:9rem 1.5rem;position:relative;}
   line-height:1.04;
   letter-spacing:.005em;
   color:#f3ede0;
-  margin:1.2rem 0 1.6rem;
+  margin:.8rem 0 .6rem;
 }
 .chapter-en em{font-style:italic;color:var(--gold-bright);}
 .chapter-line{
-  display:block;width:1px;height:60px;
+  display:block;width:1px;height:26px;
   background:linear-gradient(to bottom,var(--gold),transparent);
-  margin:2.4rem auto 0;
+  margin:1rem auto 0;
 }
 
 /* ===== エンブレム（二重円）===== */
@@ -108,10 +119,21 @@ section{padding:9rem 1.5rem;position:relative;}
   border-radius:50%;
 }
 .emblem.small{width:36px;height:36px;}
+
+.emblem-logo{
+  display:block;
+  width:56px;height:auto;
+  margin:0 auto;
+  opacity:.95;
+}
+.emblem-logo.small{width:36px;}
+.emblem-logo--plus{width:150px !important;}
 .emblem.small::after{width:24px;height:24px;}
 
 /* ===== 0. SITE HEADER (BRAND + NAV) ===== */
 .site-header{position:fixed;top:0;left:0;right:0;z-index:50;}
+/* 固定ヘッダー分をアンカー着地位置に確保（#recruit等へのジャンプでヘッダーに隠れないように） */
+[id]{scroll-margin-top:var(--header-h, 150px);}
 .site-brand{
   position:relative;
   display:flex;flex-direction:row;align-items:center;justify-content:center;
@@ -364,13 +386,88 @@ footer .emblem,footer .logotype,footer .sns,footer .copyright{position:relative;
 
 /* ===== 3. GALLERY ===== */
 .gallery{
-  padding:9rem 0;
+  padding:1.5rem 0;
   background:
     radial-gradient(ellipse 100% 70% at 50% 0%,var(--gold-mist),transparent 60%),
     rgba(20,20,20,.86);
 }
 .gallery .chapter,.ride .chapter{padding:0 1.5rem;}
 .gallery .plate{margin-bottom:4.5rem;}
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:4px;
+  padding:0 4px;
+  margin-top:4rem;
+}
+.grid-photo{
+  position:relative;
+  aspect-ratio:3/4;
+  overflow:hidden;
+}
+.grid-photo img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center 20%;
+  transition:filter .5s ease,transform .5s ease;
+}
+.grid-photo:hover img{
+  filter:contrast(1.03) brightness(1.02);
+  transform:scale(1.04);
+}
+.grid-photo img{cursor:pointer;}
+@media(min-width:768px){
+  .photo-grid{grid-template-columns:repeat(3,1fr);gap:6px;padding:0 6px;}
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox{
+  position:fixed;inset:0;z-index:100;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(6,6,6,.94);
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
+}
+.lightbox.open{opacity:1;pointer-events:auto;}
+.lightbox-img{
+  max-width:92vw;max-height:88vh;
+  object-fit:contain;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+.lightbox-close,.lightbox-prev,.lightbox-next{
+  position:absolute;
+  background:rgba(10,10,10,.6);
+  border:1px solid var(--gold);
+  color:var(--gold-bright);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:background .2s ease;
+}
+.lightbox-close:hover,.lightbox-prev:hover,.lightbox-next:hover{background:rgba(10,10,10,.85);}
+.lightbox-close{
+  top:18px;right:18px;
+  width:44px;height:44px;
+  font-size:1.6rem;line-height:1;
+}
+.lightbox-prev,.lightbox-next{
+  top:50%;transform:translateY(-50%);
+  width:48px;height:48px;
+  font-size:2rem;line-height:1;
+}
+.lightbox-prev{left:8px;}
+.lightbox-next{right:8px;}
+@media(min-width:768px){
+  .lightbox-prev{left:24px;}
+  .lightbox-next{right:24px;}
+}
+.gallery-teaser{
+  display:block;
+  color:inherit;text-decoration:none;
+}
+.gallery-teaser .plate{margin-bottom:0;transition:transform .5s ease;}
+.gallery-teaser:hover .plate{transform:scale(1.02);}
+.gallery-teaser .chapter-en{transition:opacity .3s;}
+.gallery-teaser:hover .chapter-en{opacity:.85;}
 .slider-wrap{margin-top:0;}
 .slider{
   display:flex;
@@ -407,9 +504,41 @@ footer .emblem,footer .logotype,footer .sns,footer .copyright{position:relative;
   color:var(--gray);margin-top:2.4rem;
 }
 
+/* ===== カルーセルのドットインジケーター（横スクロールの現在位置を可視化）===== */
+.carousel-dots{
+  display:flex;justify-content:center;gap:7px;
+  margin-top:1.4rem;
+}
+.carousel-dots span{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(245,245,245,.22);
+  transition:background .25s ease,transform .25s ease;
+}
+.carousel-dots span.on{
+  background:var(--gold-bright);
+  transform:scale(1.35);
+}
+
+/* ===== フローティングCTA（ヒーロー通過後にモバイルのみ表示）===== */
+.floating-cta{
+  position:fixed;right:14px;bottom:18px;z-index:40;
+  display:flex;align-items:center;gap:.4rem;
+  padding:.6rem 1.1rem;
+  background:rgba(10,10,10,.82);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--gold);border-radius:999px;
+  font-family:var(--serif);font-style:italic;font-weight:500;
+  font-size:.8rem;letter-spacing:.05em;color:var(--gold-bright);
+  opacity:0;transform:translateY(12px);pointer-events:none;
+  transition:opacity .3s ease,transform .3s ease;
+}
+.floating-cta.show{opacity:1;transform:none;pointer-events:auto;}
+.floating-cta:active{transform:scale(.96);}
+@media(min-width:768px){.floating-cta{display:none;}}
+
 /* ===== 4. RIDE ===== */
 .ride{
-  padding:9rem 0;
+  padding:1.5rem 0;
   background:
     radial-gradient(ellipse 110% 65% at 50% 100%,var(--gold-mist),transparent 60%),
     rgba(10,10,10,.86);
@@ -434,6 +563,12 @@ footer .emblem,footer .logotype,footer .sns,footer .copyright{position:relative;
   text-align:center;
   position:relative;
 }
+a.store-card{
+  display:block;
+  color:inherit;text-decoration:none;
+  transition:border-color .3s;
+}
+a.store-card:hover{border-color:var(--gold-soft);}
 .store-card::before{
   content:"";
   position:absolute;top:0;left:50%;transform:translateX(-50%);
@@ -485,6 +620,18 @@ footer .emblem,footer .logotype,footer .sns,footer .copyright{position:relative;
   will-change:transform;
 }
 .recruit .inner{position:relative;z-index:2;}
+.recruit-banner{
+  display:block;
+  position:relative;z-index:2;
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+  margin-top:2.5rem;
+  margin-bottom:2.5rem;
+  border-top:1px solid var(--gold);
+  border-bottom:1px solid var(--gold);
+}
+.recruit-banner img{width:100%;height:auto;display:block;}
 .recruit-copy{
   text-align:center;
   font-size:clamp(1.3rem,5.2vw,2rem);
@@ -517,6 +664,15 @@ footer .emblem,footer .logotype,footer .sns,footer .copyright{position:relative;
   padding:3rem 2rem;
   text-align:left;
 }
+.recruit-plan-photo{
+  margin:-3rem -2rem 2rem;
+  aspect-ratio:4/3;
+  overflow:hidden;
+}
+.recruit-plan-photo img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center 25%;
+}
 .recruit-plan h3{
   font-weight:400;
   letter-spacing:.3em;
@@ -542,6 +698,38 @@ footer .emblem,footer .logotype,footer .sns,footer .copyright{position:relative;
   color:#ededed;
   line-height:2.1;
   margin-top:.4rem;
+}
+
+.faq-list{
+  max-width:640px;
+  margin:4rem auto 0;
+  text-align:left;
+}
+.faq-item{
+  border-top:1px solid var(--line);
+  padding:1.8rem 0;
+}
+.faq-item:last-child{border-bottom:1px solid var(--line);}
+.faq-q{
+  display:flex;gap:.8rem;
+  font-size:.95rem;
+  letter-spacing:.05em;
+  color:#f3ede0;
+  margin-bottom:.9rem;
+}
+.faq-q .qa-mark{
+  font-family:var(--serif);font-style:italic;font-weight:500;
+  color:var(--gold);flex-shrink:0;
+}
+.faq-a{
+  display:flex;gap:.8rem;
+  font-size:.85rem;
+  line-height:2.2;
+  color:#c9c9c9;
+}
+.faq-a .qa-mark{
+  font-family:var(--serif);font-style:italic;font-weight:500;
+  color:var(--gray);flex-shrink:0;
 }
 
 /* ===== 7. GUEST ===== */
@@ -659,7 +847,7 @@ footer .logotype{font-size:.85rem;margin:1.5rem 0;}
 .guest .inner{position:relative;z-index:1;}
 
 /* ===== reveal ===== */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s ease;}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);}
 .reveal.on{opacity:1;transform:none;}
 
 /* ===== サブページ：固定ヘッダーと先頭セクションの被り回避 ===== */
@@ -669,7 +857,7 @@ body.subpage main > section:first-child{
 }
 /* ===== Close-Up Host（雑誌表紙風カード）===== */
 .closeup{
-  padding:9rem 0;
+  padding:1.5rem 0;
   background:
     radial-gradient(ellipse 100% 70% at 50% 0%,var(--gold-mist),transparent 60%),
     rgba(20,20,20,.86);
@@ -697,10 +885,9 @@ body.subpage main > section:first-child{
 .cu-card img{
   width:100%;height:100%;
   object-fit:cover;object-position:center 20%;
-  filter:grayscale(52%) sepia(22%) saturate(1.12) contrast(1.06) brightness(.9);
   transition:filter .7s ease;
 }
-.cu-card:hover img{filter:grayscale(20%) sepia(10%) saturate(1.05) contrast(1.04);}
+.cu-card:hover img{filter:contrast(1.03) brightness(1.02);}
 .cu-grad{
   position:absolute;inset:0;z-index:1;
   background:linear-gradient(to top,rgba(10,10,10,.94) 0%,rgba(10,10,10,.05) 48%,rgba(10,10,10,.35) 100%);
@@ -727,13 +914,14 @@ body.subpage main > section:first-child{
 .store-photo{
   position:relative;
   margin:0 -1.8rem;
-  height:220px;overflow:hidden;
+  height:300px;overflow:hidden;
 }
 .store-photo img{
   width:100%;height:100%;
   object-fit:cover;object-position:center 28%;
-  filter:grayscale(46%) sepia(18%) saturate(1.1) contrast(1.05) brightness(.86);
 }
+.store-photo--create img{object-position:15% 22%;}
+.store-photo--plus img{object-position:25% 18%;}
 .store-photo-grad{
   position:absolute;inset:0;
   background:linear-gradient(to top,var(--bg) 1%,rgba(10,10,10,.12) 55%,rgba(10,10,10,.4) 100%);
@@ -792,17 +980,17 @@ body.subpage main > section:first-child{
     text-align:left;
     font-size:.74rem;
   }
-  section{padding:14rem 2rem;}
-  .statement{padding:16rem 2rem;}
-  .gallery,.ride,.closeup{padding:14rem 0;}
-  .chapter{margin-bottom:6rem;}
+  section{padding:6rem 2rem;}
+  .statement{padding:8rem 2rem;}
+  .gallery,.ride,.closeup{padding:6rem 0;}
+  .chapter{margin-bottom:1.8rem;}
   .closeup-grid{gap:18px;padding:0 4vw;}
   .cu-card{flex:0 0 34%;}
-  .store-photo{height:280px;}
+  .store-photo{height:400px;}
   .store-cards{grid-template-columns:repeat(2,1fr);gap:2rem;}
   .recruit-plans{grid-template-columns:repeat(2,1fr);gap:2rem;}
   .plate{height:90vh;}
-  .gallery .plate,.ride .plate{margin-bottom:6rem;}
+  .gallery .plate,.ride .plate{margin-bottom:3rem;}
   .slide{flex:0 0 62%;height:58vh;}
   .slider{gap:12px;padding:0 4vw;}
   body.subpage main > section:first-child{
@@ -814,7 +1002,7 @@ body.subpage main > section:first-child{
    参考サイトの「GROUP RANKING」形式に寄せた、縦書きラベル＋横長バナー横スクロール。
    中身は2026年8月〜実素材へ差し替え予定のプレースホルダー。 */
 .truckcinema{
-  padding:4.5rem 0;
+  padding:1.5rem 0;
   background:
     radial-gradient(ellipse 100% 70% at 50% 0%,var(--gold-mist),transparent 60%),
     rgba(10,10,10,.9);
@@ -866,11 +1054,14 @@ body.subpage main > section:first-child{
   background:var(--bg2);
 }
 .tc-slide img{
-  width:100%;height:100%;object-fit:cover;
-  filter:grayscale(50%) sepia(20%) saturate(1.1) contrast(1.05) brightness(.86);
-  transition:filter .7s ease;
+  width:100%;height:100%;object-fit:cover;object-position:70% center;
+  transition:filter .5s ease,transform .5s ease;
 }
-.tc-slide:hover img{filter:grayscale(18%) sepia(8%) saturate(1.04) contrast(1.03);}
+.tc-slide:hover img{filter:contrast(1.03) brightness(1.02);transform:scale(1.03);}
+/* 元素材が横長バナー(3:1)で片側が黒背景のため、人物が写る位置に個別でクロップ位置を調整 */
+.tc-slide:nth-child(1) img{object-position:72% center;}
+.tc-slide:nth-child(2) img{object-position:55% center;}
+.tc-slide:nth-child(3) img{object-position:22% center;}
 .tc-grad{
   position:absolute;inset:0;z-index:1;
   background:linear-gradient(to top,rgba(10,10,10,.9) 0%,rgba(10,10,10,.05) 50%,rgba(10,10,10,.35) 100%);

@@ -11,6 +11,27 @@
   if(document.fonts && document.fonts.ready){ document.fonts.ready.then(syncHeaderHeight); }
 })();
 
+// URLに#付き（例：#recruit）で来た場合、ブラウザのネイティブジャンプは
+// 画像/Webフォント読み込み前の未確定レイアウトで一度きり実行されズレることがあるため、
+// load・フォント確定後に着地位置を再補正する
+// ハッシュなしで来た場合は、モバイルブラウザが同一URLの前回スクロール位置を
+// 復元してしまうことがあるため、明示的に先頭へ戻す（<head>のscrollRestoration='manual'と対）
+function landAtTop(){
+  if(location.hash){
+    const target = document.getElementById(location.hash.slice(1));
+    if(target) target.scrollIntoView({block:'start'});
+  }else{
+    scrollTo(0,0);
+  }
+}
+addEventListener('load', ()=>{ requestAnimationFrame(landAtTop); });
+if(document.fonts && document.fonts.ready){ document.fonts.ready.then(()=>{ requestAnimationFrame(landAtTop); }); }
+// Safari等のbfcache（戻る/同URL再訪時にスクリプト再実行なしでページを復元する仕組み）から
+// 復帰した場合はload/document.fontsが発火しないため、pageshowで別途拾う
+addEventListener('pageshow', (e)=>{
+  if(e.persisted) requestAnimationFrame(landAtTop);
+});
+
 // モバイル：ハンバーガーメニューの開閉（--header-hはナビ開閉で再計測しない＝ヒーローのガタつき防止）
 (function(){
   const header = document.querySelector('.site-header');
@@ -75,6 +96,86 @@ if(reduced){
   addEventListener('resize', onScroll, {passive:true});
   kinTick();
 }
+
+// ギャラリーのLightbox（写真クリックでその写真だけを拡大表示）
+(function(){
+  const photos = [...document.querySelectorAll('.photo-grid .grid-photo img')];
+  const lightbox = document.getElementById('lightbox');
+  if(!photos.length || !lightbox) return;
+
+  const img = lightbox.querySelector('.lightbox-img');
+  const closeBtn = lightbox.querySelector('.lightbox-close');
+  const prevBtn = lightbox.querySelector('.lightbox-prev');
+  const nextBtn = lightbox.querySelector('.lightbox-next');
+  let current = 0;
+
+  function show(i){
+    current = (i + photos.length) % photos.length;
+    img.src = photos[current].src;
+    img.alt = photos[current].alt;
+  }
+  function open(i){
+    show(i);
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden','false');
+  }
+  function close(){
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden','true');
+  }
+
+  photos.forEach((p,i)=> p.addEventListener('click', ()=> open(i)));
+  closeBtn.addEventListener('click', close);
+  prevBtn.addEventListener('click', ()=> show(current - 1));
+  nextBtn.addEventListener('click', ()=> show(current + 1));
+  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) close(); });
+  document.addEventListener('keydown', (e)=>{
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key === 'Escape') close();
+    if(e.key === 'ArrowLeft') show(current - 1);
+    if(e.key === 'ArrowRight') show(current + 1);
+  });
+})();
+
+// カルーセルのドットインジケーター（横スクロールの現在位置を可視化）
+document.querySelectorAll('[data-carousel]').forEach(track=>{
+  const items = [...track.children];
+  if(items.length < 2) return;
+  const dotsWrap = document.createElement('div');
+  dotsWrap.className = 'carousel-dots';
+  dotsWrap.setAttribute('aria-hidden','true');
+  items.forEach((_,i)=>{
+    const d = document.createElement('span');
+    if(i===0) d.classList.add('on');
+    dotsWrap.appendChild(d);
+  });
+  track.insertAdjacentElement('afterend', dotsWrap);
+  const dots = [...dotsWrap.children];
+  let ticking = false;
+  const update = ()=>{
+    ticking = false;
+    const center = track.scrollLeft + track.clientWidth/2;
+    let closest = 0, min = Infinity;
+    items.forEach((it,i)=>{
+      const d = Math.abs((it.offsetLeft + it.offsetWidth/2) - center);
+      if(d < min){min = d; closest = i;}
+    });
+    dots.forEach((d,i)=>d.classList.toggle('on', i===closest));
+  };
+  track.addEventListener('scroll', ()=>{ if(!ticking){ticking=true; requestAnimationFrame(update);} }, {passive:true});
+  update();
+});
+
+// フローティングCTA：ヒーローを過ぎたら表示、戻ったら隠す
+(function(){
+  const cta = document.querySelector('.floating-cta');
+  const hero = document.querySelector('.hero');
+  if(!cta || !hero) return;
+  const io2 = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ cta.classList.toggle('show', !e.isIntersecting); });
+  }, {threshold:0});
+  io2.observe(hero);
+})();
 
 // パララックス（PC・ホバー可能デバイスのみ。モバイル/タッチは通常表示にフォールバック）
 (function(){
